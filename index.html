@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense_Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="amount_datils">
+            <div class="current_amount">
+                <h1 id="current_data">0</h1>
+                <p>Current balance</p>
+            </div>
+            <div class="income_amount">
+                <h1 id="income_data">0</h1> 
+                <p>Income amount</p>
+            </div>
+            <div class="expense_amount">
+                <h1 id="expense_data">0</h1>
+                <p>Expense amount</p>
+            </div>
+        </div>
+        <div class="data_container">
+            <form id="form_list" class="form_list">
+                <label for="id_value" hidden>ID:</label>
+                <input type="text" hidden id="id_value">
+                <label for="date_value">Date:</label>
+                <input type="date" id="date_value">
+                <label for="detail">Detail:</label>
+                <input type="text" placeholder="Detail" id="detail" autocomplete="off">
+                <label for="amount">Amount:</label>
+                <input type="number" placeholder="Rs." id="amount" autocomplete="off">
+                <label for="category">Category:</label>
+                <select name="category" id="category">
+                    <option value="">Select_type</option>
+                    <option value="Income">Income</option>
+                    <option value="Expense">Expense</option>
+                </select>
+                <button id="add_btn" type="submit">Add</button>
+            </form>
+            <div class="table_detail">
+                <table>
+                    <thead>
+                        <th hidden>S.no</th>
+                        <th>Date</th>
+                        <th>Detail</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </thead>
+                    <tbody id="table_data">
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

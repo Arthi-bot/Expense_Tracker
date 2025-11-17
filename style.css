@@ -1,0 +1,175 @@
+/* VARIABLES */
+:root{
+    --primary: blue;
+    --inner_primary: lightblue;
+    --success: green;
+    --inner_success: lightgreen;
+    --danger: red;
+    --inner_danger: lightcoral;
+}
+
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'regular-font';
+}
+
+/* BASE TYPOGRAPHY */
+body{
+    font-size: 14px;
+}
+
+h1{
+    font-size: 1.6em;
+}
+p{
+    font-size: 0.8em;
+}
+label, input, select, button{
+    font-size: 1.1em;
+}
+th{
+    font-size: 1.2em;
+}
+td{
+    font-size: 1.0em;
+}
+
+/* CUSTOM FONT */
+@font-face{
+    font-family: 'regular-font';
+    src: url('Assets/fonts/Roboto-Regular.ttf');
+}
+
+/* AMOUNT DETAILS CARDS */
+.amount_datils{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 30px 0;
+    gap: 2%;
+}
+.current_amount,
+.income_amount,
+.expense_amount{
+    padding: 30px;
+    width: 150px;
+    height: 100px;
+    border-radius: 10px;
+    margin: 5px 0;
+}
+.current_amount{
+    background: var(--inner_primary);
+    border: 2px solid var(--primary);
+}
+.income_amount{
+    background: var(--inner_success);
+    border: 2px solid var(--success);
+}
+.expense_amount{
+    background: var(--inner_danger);
+    border: 2px solid var(--danger);
+}
+
+/* FORM LIST */
+.form_list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+label, input, select{
+    width: 80%;      
+    margin-top: 15px;
+    background: #fff;
+}
+input, select{
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 2px solid gray;
+}
+input[type="date"]::-webkit-calendar-picker-indicator, input, select{
+    cursor: pointer;
+}
+/* BUTTON */
+button{
+    width: 40%;
+    padding: 10px 0;
+    background: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+button:hover{
+    border: 2px solid var(--success);
+    background: rgb(208, 241, 208);
+}
+button:active{
+    background: var(--inner_success);
+    border: 2px solid var(--success);
+}
+
+/* TABLE */
+table{
+    width: 95%;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 20px auto;
+    
+}
+table, th, td {
+    border: 2px solid black;
+}
+th{
+    background: var(--inner_primary);
+}
+td{
+    background: #fff;
+}
+
+/*  MEDIA QUERIES */
+/* Small Tablets */
+@media screen and (min-width: 620px) {
+    body{
+        font-size: 16px;
+    }
+    .current_amount,
+    .income_amount,
+    .expense_amount{
+        width: 170px;
+        height: 110px;
+        border-radius: 12px;
+    }
+}
+
+/* Large Tablets & Laptops */
+@media screen and (min-width: 960px) {
+    body{
+        font-size: 20px;
+    }
+    .current_amount,
+    .income_amount,
+    .expense_amount{
+        width: 200px;
+        height: 130px;
+        border-radius: 15px;
+    }
+    .data_container{
+        display: flex;
+    }
+    .form_list, .table_detail{
+        width: 50%;
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 1200px) {
+    body{
+        font-size: 22px;
+    }
+}

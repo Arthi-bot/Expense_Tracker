@@ -44,7 +44,7 @@ td{
 }
 
 /* AMOUNT DETAILS CARDS */
-.amount_datils{
+.summary_datils{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -53,24 +53,24 @@ td{
     margin: 30px 0;
     gap: 2%;
 }
-.current_amount,
-.income_amount,
-.expense_amount{
+.summary_balance,
+.summary_income,
+.summary_expense{
     padding: 30px;
     width: 150px;
     height: 100px;
     border-radius: 10px;
     margin: 5px 0;
 }
-.current_amount{
+.summary_balance{
     background: var(--inner_primary);
     border: 2px solid var(--primary);
 }
-.income_amount{
+.summary_income{
     background: var(--inner_success);
     border: 2px solid var(--success);
 }
-.expense_amount{
+.summary_expense{
     background: var(--inner_danger);
     border: 2px solid var(--danger);
 }
@@ -95,6 +95,13 @@ input, select{
 input[type="date"]::-webkit-calendar-picker-indicator, input, select{
     cursor: pointer;
 }
+/* remove up & down arrow in number type input tag */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; 
+}
+
 /* BUTTON */
 button{
     width: 40%;
@@ -138,9 +145,9 @@ td{
     body{
         font-size: 16px;
     }
-    .current_amount,
-    .income_amount,
-    .expense_amount{
+    .summary_balance,
+    .summary_income,
+    .summary_expense{
         width: 170px;
         height: 110px;
         border-radius: 12px;
@@ -152,14 +159,14 @@ td{
     body{
         font-size: 20px;
     }
-    .current_amount,
-    .income_amount,
-    .expense_amount{
+    .summary_balance,
+    .summary_income,
+    .summary_expense{
         width: 200px;
         height: 130px;
         border-radius: 15px;
     }
-    .data_container{
+    .input_data_container{
         display: flex;
     }
     .form_list, .table_detail{

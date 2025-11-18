@@ -1,90 +1,26 @@
-//data input for table
+//input 
 const id_value = document.getElementById("id_value");
 const date_value = document.getElementById("date_value");
 const detail = document.getElementById("detail");
 const amount = document.getElementById("amount");
 const category = document.getElementById("category");
-//add button to add data
+
+//add button
 const add_btn = document.getElementById("add_btn");
-//data table to show data
+
+//data display table
 const table_data = document.getElementById("table_data");
 
-//empty array to store data simulteneously
-let array_datas = JSON.parse(localStorage.getItem("array_datas")) || [];
+//to store input data
+let data_collection = JSON.parse(localStorage.getItem("data_collection")) || [];
+
 //this null variable is using for give more than one eventlistener to one button
 let editId = null;
-
-//update only income value
-const income_data = document.getElementById("income_data");
-let income_value = Number(localStorage.getItem("income_value")) || 0;
-income_data.innerText = income_value;
-
-function income_total_value(updated_amount){
-    if(category.value === "Income"){
-        updated_amount = income_value + Number(updated_amount);
-        income_value = updated_amount;
-        income_data.innerText = income_value;
-        localStorage.setItem("income_value", income_value);
-    }
-}
-
-let income_changed_value = 0;
-function income_add_sub(changed_amount){
-    if(changed_amount < income_changed_value){
-        changed_amount = income_changed_value - Number(changed_amount);
-        income_value = income_value - Number(changed_amount);
-        income_data.innerText = income_value;       
-    }
-    if(changed_amount > income_changed_value){
-        changed_amount = Number(changed_amount) - income_changed_value;
-        income_value = income_value + Number(changed_amount);
-        income_data.innerText = income_value;  
-    }
-    localStorage.setItem("income_value", income_value);
-}
-
-//update only expense value
-const expense_data = document.getElementById("expense_data");
-let expense_value = Number(localStorage.getItem("expense_value")) || 0;
-expense_data.innerText = expense_value;
-
-function expense_total_value(updated_amount){
-    if(category.value === "Expense"){
-        updated_amount = expense_value + Number(updated_amount);
-        expense_value = updated_amount;
-        expense_data.innerText = expense_value;
-        localStorage.setItem("expense_value", expense_value);
-    }
-}
-
-let expense_changed_value = 0;
-function expense_add_sub(changed_amount){
-    if(changed_amount < expense_changed_value){
-        changed_amount = expense_changed_value - Number(changed_amount);
-        expense_value = expense_value - Number(changed_amount);
-        expense_data.innerText = expense_value;
-    }
-    if(changed_amount > expense_changed_value){
-        changed_amount = Number(changed_amount) - expense_changed_value;
-        expense_value = expense_value + Number(changed_amount);
-        expense_data.innerText = expense_value;  
-    }
-    localStorage.setItem("expense_value", expense_value);
-}
-
-//current_data
-const current_data = document.getElementById("current_data");
-let current_value = 0;
-function current_total_value(){
-    current_value = income_value - expense_value;
-    current_data.innerText = current_value;
-    localStorage.setItem("current_value", current_value);
-}
 
 /* Function to display data in the table */
 function renderTable() {
   table_data.innerHTML = ""; // clear old data
-  array_datas.forEach((record) => {
+  data_collection.forEach((record) => {
     table_data.innerHTML += `
       <tr>
         <td hidden>${record.id}.</td>
@@ -107,6 +43,73 @@ function renderTable() {
   });
 }
 
+//add & update income value
+const income_amount = document.getElementById("income_amount");
+let income_value = Number(localStorage.getItem("income_value")) || 0;
+income_amount.innerText = income_value;
+
+function income_total_value(new_amount){
+    if(category.value === "Income"){
+        new_amount = income_value + Number(new_amount);
+        income_value = new_amount;
+        income_amount.innerText = income_value;
+        localStorage.setItem("income_value", income_value);
+    }
+}
+
+let income_changed_value = 0;
+function income_add_sub(changed_amount){
+    if(changed_amount < income_changed_value){
+        changed_amount = income_changed_value - Number(changed_amount);
+        income_value = income_value - Number(changed_amount);
+        income_amount.innerText = income_value;       
+    }
+    if(changed_amount > income_changed_value){
+        changed_amount = Number(changed_amount) - income_changed_value;
+        income_value = income_value + Number(changed_amount);
+        income_amount.innerText = income_value;  
+    }
+    localStorage.setItem("income_value", income_value);
+}
+
+//add & update only expense value
+const expense_amount = document.getElementById("expense_amount");
+let expense_value = Number(localStorage.getItem("expense_value")) || 0;
+expense_amount.innerText = expense_value;
+
+function expense_total_value(new_amount){
+    if(category.value === "Expense"){
+        new_amount = expense_value + Number(new_amount);
+        expense_value = new_amount;
+        expense_amount.innerText = expense_value;
+        localStorage.setItem("expense_value", expense_value);
+    }
+}
+
+let expense_changed_value = 0;
+function expense_add_sub(changed_amount){
+    if(changed_amount < expense_changed_value){
+        changed_amount = expense_changed_value - Number(changed_amount);
+        expense_value = expense_value - Number(changed_amount);
+        expense_amount.innerText = expense_value;
+    }
+    if(changed_amount > expense_changed_value){
+        changed_amount = Number(changed_amount) - expense_changed_value;
+        expense_value = expense_value + Number(changed_amount);
+        expense_amount.innerText = expense_value;  
+    }
+    localStorage.setItem("expense_value", expense_value);
+}
+
+//balance value
+const balance_amount = document.getElementById("balance_amount");
+let current_value = 0;
+function current_total_value(){
+    current_value = income_value - expense_value;
+    balance_amount.innerText = current_value;
+    localStorage.setItem("current_value", current_value);
+}
+
 /**  Add and Update eventlistener */
 add_btn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -123,7 +126,7 @@ add_btn.addEventListener("click", (e) => {
 
   if (editId === null) {
     let array_data = {
-      id: array_datas.length + 1,
+      id: data_collection.length+1,
       date: update_date,
       detail: update_detail,
       category: update_category,
@@ -136,13 +139,12 @@ add_btn.addEventListener("click", (e) => {
     if(update_category === "Expense"){
         expense_total_value(update_amount);
     }
-
     current_total_value();
-    array_datas.push(array_data);
+    data_collection.push(array_data);
   } 
   else {
-    let index_value = array_datas.findIndex((record) => record.id === editId);
-    array_datas[index_value] = {
+    let index_value = data_collection.findIndex((record) => record.id === editId);
+    data_collection[index_value] = {
       id: updated_id,
       date: update_date,
       detail: update_detail,
@@ -156,17 +158,14 @@ add_btn.addEventListener("click", (e) => {
     if(update_category === "Expense"){
         expense_add_sub(update_amount);
     }
-
     current_total_value();
     add_btn.textContent = "Add";
     editId = null;
   }
-
   // Save updated array to localStorage
-  localStorage.setItem("array_datas", JSON.stringify(array_datas));
+  localStorage.setItem("data_collection", JSON.stringify(data_collection));
 
   renderTable();
-
   id_value.value = '';
   detail.value = '';
   date_value.value = '';
@@ -176,7 +175,7 @@ add_btn.addEventListener("click", (e) => {
 
 /** Edit function */
 function edit(id) {
-  let obj = array_datas.find((record) => record.id === id);
+  let obj = data_collection.find((record) => record.id === id);
   id_value.value = obj.id;
   date_value.value = obj.date;
   detail.value = obj.detail;
@@ -190,22 +189,21 @@ function edit(id) {
 
 /** Delete data */
 function deleteRecord(id) {
-
   // Find the record being deleted
-  let deletedRecord = array_datas.find((record) => record.id === id);
+  let deletedRecord = data_collection.find((record) => record.id === id);
 
   if (!deletedRecord) return;
 
   // Adjust income / expense totals
   if (deletedRecord.category === "Income") {
     income_value -= Number(deletedRecord.amount);
-    income_data.innerText = income_value;
+    income_amount.innerText = income_value;
     localStorage.setItem("income_value", income_value);
   }
 
   if (deletedRecord.category === "Expense") {
     expense_value -= Number(deletedRecord.amount);
-    expense_data.innerText = expense_value;
+    expense_amount.innerText = expense_value;
     localStorage.setItem("expense_value", expense_value);
   }
 
@@ -213,20 +211,19 @@ function deleteRecord(id) {
   current_total_value();
 
   // Remove record from array
-  array_datas = array_datas.filter((record) => record.id !== id);
+  data_collection = data_collection.filter((record) => record.id !== id);
 
   // Save updated array
-  localStorage.setItem("array_datas", JSON.stringify(array_datas));
+  localStorage.setItem("data_collection", JSON.stringify(data_collection));
 
   // Re-render table
   renderTable();
 }
 
-
 /* Load existing data when page reloads */
 window.onload = () => {
   renderTable();
-  income_data.innerText = localStorage.getItem("income_value") || 0;
-  expense_data.innerText = localStorage.getItem("expense_value") || 0;
-  current_data.innerText = localStorage.getItem("current_value") || 0;
+  income_amount.innerText = localStorage.getItem("income_value") || 0;
+  expense_amount.innerText = localStorage.getItem("expense_value") || 0;
+  balance_amount.innerText = localStorage.getItem("current_value") || 0;
 };

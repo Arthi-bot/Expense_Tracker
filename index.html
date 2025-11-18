@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense_Tracker</title>
+    <title>Expense_tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <div class="amount_datils">
-            <div class="current_amount">
-                <h1 id="current_data">0</h1>
-                <p>Current balance</p>
+        <div class="summary_datils">
+            <div class="summary_balance">
+                <h1 id="balance_amount"></h1>
+                <p>Balance</p>
             </div>
-            <div class="income_amount">
-                <h1 id="income_data">0</h1> 
-                <p>Income amount</p>
+            <div class="summary_income">
+                <h1 id="income_amount"></h1> 
+                <p>Income</p>
             </div>
-            <div class="expense_amount">
-                <h1 id="expense_data">0</h1>
-                <p>Expense amount</p>
+            <div class="summary_expense">
+                <h1 id="expense_amount"></h1>
+                <p>Expense</p>
             </div>
         </div>
-        <div class="data_container">
-            <form id="form_list" class="form_list">
+        <div class="input_data_container">
+            <form class="form_list">
                 <label for="id_value" hidden>ID:</label>
-                <input type="text" hidden id="id_value">
+                <input type="number" hidden id="id_value">
                 <label for="date_value">Date:</label>
                 <input type="date" id="date_value">
                 <label for="detail">Detail:</label>
@@ -52,13 +52,10 @@
                         <th>Delete</th>
                     </thead>
                     <tbody id="table_data">
-                        <tr>
-                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
     </div>
     <script src="script.js"></script>
 </body>

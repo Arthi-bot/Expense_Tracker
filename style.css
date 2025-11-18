@@ -66,6 +66,12 @@ td{
     background: var(--inner_primary);
     border: 2px solid var(--primary);
 }
+.summary_balance div,
+.summary_income div,
+.summary_expense div
+{
+    display: flex;
+}
 .summary_income{
     background: var(--inner_success);
     border: 2px solid var(--success);

@@ -4,7 +4,7 @@ A lightweight expense tracking web application built using Vanilla JavaScript. T
 store data using Local Storage, and dynamically update the UI using DOM manipulation.
 
 ## Preview
-![Expense Tracker Preview](YOUR_SCREENSHOT_LINK_HERE)
+![Expense Tracker Preview](./Assets/Project_Preview.png)
 
 ## Live Demo
 https://expense-tracker-sigma-fawn.vercel.app/

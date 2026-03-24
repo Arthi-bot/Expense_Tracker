@@ -1,24 +1,26 @@
 # Expense Tracker (Vanilla JavaScript)
 
-A lightweight expense tracking web application built using Vanilla JavaScript. The app allows users to perform CRUD operations and dynamically updates the UI using DOM manipulation.
+A lightweight expense tracking web application built using Vanilla JavaScript. The application allows users to perform CRUD operations, 
+store data using Local Storage, and dynamically update the UI using DOM manipulation.
 
-## Features
-- Add and delete expenses
-- Real-time balance calculation
-- Dynamic UI updates
-
-## Tech Stack
-- HTML
-- CSS
-- JavaScript
-
-## How to Run
-Open index.html in your browser
+## Preview
+![Expense Tracker Preview](YOUR_SCREENSHOT_LINK_HERE)
 
 ## Live Demo
 https://expense-tracker-sigma-fawn.vercel.app/
 
-## Learning
-- DOM manipulation
-- Event handling
-- CRUD operations in JavaScript
+## Features
+- Add, delete and update expenses  
+- Real-time balance calculation  
+- Data persistence using Local Storage  
+- Dynamic UI updates using DOM manipulation  
+
+## Tech Stack
+- HTML  
+- CSS  
+- JavaScript  
+
+## How to Run
+- Clone the repository
+- Navigate to the project directory
+- Open index.html in your browser

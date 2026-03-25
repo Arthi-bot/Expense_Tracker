@@ -5,6 +5,18 @@ const detail = document.getElementById("detail");
 const amount = document.getElementById("amount");
 const category = document.getElementById("category");
 
+/* Date Format */
+function formatDate(dateString) {
+  if (!dateString) return "";
+  const [year, month, day] = dateString.split("-");
+  return `${day}-${month}-${year}`;
+}
+
+function reverseDate(dateString) {
+  const [day, month, year] = dateString.split("-");
+  return `${year}-${month}-${day}`;
+}
+
 //add button
 const add_btn = document.getElementById("add_btn");
 
@@ -25,7 +37,7 @@ function renderTable() {
       <tr>
         <td hidden>${record.id}.</td>
         <td>${record.date}</td>
-        <td>${record.detail}</td>
+        <td style="text-transform: capitalize;">${record.detail}</td>
         <td>${record.category}</td>
         <td>₹ ${record.amount}</td>
         <td onclick="edit(${record.id})" style="cursor:pointer;">
@@ -115,7 +127,7 @@ add_btn.addEventListener("click", (e) => {
   e.preventDefault();
 
   let updated_id = Number(id_value.value);
-  let update_date = date_value.value;
+  let update_date = formatDate(date_value.value);
   let update_detail = detail.value;
   let update_category = category.value;
   let update_amount = amount.value;
@@ -177,7 +189,7 @@ add_btn.addEventListener("click", (e) => {
 function edit(id) {
   let obj = data_collection.find((record) => record.id === id);
   id_value.value = obj.id;
-  date_value.value = obj.date;
+  date_value.value = reverseDate(obj.date);
   detail.value = obj.detail;
   category.value = obj.category;
   amount.value = obj.amount;
@@ -222,7 +234,40 @@ function deleteRecord(id) {
 
 /* Load existing data when page reloads */
 window.onload = () => {
+
+  // added default examples
+  if (data_collection.length === 0) {
+    data_collection = [
+      {
+        id: 1,
+        date: "01-03-2026",
+        detail: "Salary",
+        category: "Income",
+        amount: 50000
+      },
+      {
+        id: 2,
+        date: "24-03-2026",
+        detail: "Groceries",
+        category: "Expense",
+        amount: 1500
+      }
+    ];
+
+    // Save to localStorage
+    localStorage.setItem("data_collection", JSON.stringify(data_collection));
+
+    // Set totals properly
+    income_value = data_collection[0].amount;
+    expense_value = data_collection[1].amount;
+    current_total_value();
+
+    localStorage.setItem("income_value", income_value);
+    localStorage.setItem("expense_value", expense_value);
+  }
+
   renderTable();
+
   income_amount.innerText = localStorage.getItem("income_value") || 0;
   expense_amount.innerText = localStorage.getItem("expense_value") || 0;
   balance_amount.innerText = localStorage.getItem("current_value") || 0;
